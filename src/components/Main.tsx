@@ -1,22 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTodoForm from "./mains/AddTodoForm";
 import TodoBoard from "./mains/TodoBoard";
 import { TodoItemProps } from "./mains/TodoBoard";
 
+let id = 0;
 export default function Main() {
-  const [todos, setTodos] = useState<TodoItemProps[]>([
-    {
-      todo: "할일1",
-      createTime: new Date(),
-      done: false,
-    },
-    {
-      todo: "할일2",
-      createTime: new Date(),
-      done: false,
-    },
-  ]);
-  const [inputText, setInputText] = useState("let's writing to do list!");
+  const [todos, setTodos] = useState<TodoItemProps[]>([]);
+  const [inputText, setInputText] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -25,6 +15,7 @@ export default function Main() {
   const addTodo = () => {
     if (inputText.trim() === "") return;
     const newTodo: TodoItemProps = {
+      id: id++,
       todo: inputText,
       createTime: new Date(),
       done: false,
@@ -41,10 +32,17 @@ export default function Main() {
     }
   };
 
+  const delTodo = (id: number) => {
+    const newState = todos.filter(todo => todo.id !== id);
+    setTodos(newState);
+    console.log("click!");
+  };
+  useEffect(() => {}, []);
+
   return (
     <main>
       <AddTodoForm text={inputText} onChange={handleChange} onClick={addTodo} onKeydown={handleKeydown} />
-      <TodoBoard todos={todos} />
+      <TodoBoard todos={todos} onClick={delTodo} />
     </main>
   );
 }

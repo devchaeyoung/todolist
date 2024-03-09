@@ -10,10 +10,8 @@ interface AddTodoFormProps {
 export default function AddTodoForm({ text, onChange, onClick, onKeydown }: AddTodoFormProps) {
   return (
     <div>
-      <input type="text" placeholder={text} onKeyDown={onKeydown} onChange={onChange} />
-      <button type="submit" onClick={onClick}>
-        Enter
-      </button>
+      <input type="text" value={text} onKeyDown={onKeydown} onChange={onChange} />
+      <button onClick={onClick}>Enter</button>
     </div>
   );
 }
