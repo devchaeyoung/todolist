@@ -22,7 +22,6 @@ export default function Main() {
     };
 
     setTodos(todos.concat(newTodo));
-    console.log("input change");
     setInputText("");
   };
 
@@ -35,9 +34,18 @@ export default function Main() {
   const delTodo = (id: number) => {
     const newState = todos.filter(todo => todo.id !== id);
     setTodos(newState);
-    console.log("click!");
   };
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
+    const storageData = localStorage.getItem("todos");
+    if (storageData) {
+      setTodos(JSON.parse(storageData));
+    }
+  }, []);
 
   return (
     <main>
