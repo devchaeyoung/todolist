@@ -1,13 +1,63 @@
-.light {
-    background-color: var(--light-color);
-    color: var(--dark-color);
-    border: 1px solid var(--dark-color);
+:root {
+  --background-light: #ffffff;
+  --text-light: #000000;
+  --border-light: #e0e0e0;
+  
+  --background-dark: #1a1a1a;
+  --text-dark: #ffffff;
+  --border-dark: #404040;
 }
 
-.dark {
-    background-color: var(--dark-color);
-    color: var(--light-color);
-    border: 1px solid var(--light-color);
+.app {
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.app.light {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.app.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+/* 기존 스타일들은 유지하면서 테마 관련 스타일 추가 */
+.todo-input {
+  border: 1px solid;
+}
+
+.light .todo-input {
+  border-color: var(--border-light);
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.dark .todo-input {
+  border-color: var(--border-dark);
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+/* 버튼 스타일 */
+.theme-toggle-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.light .theme-toggle-button {
+  background-color: var(--background-light);
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+.dark .theme-toggle-button {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
 }
 
 main {

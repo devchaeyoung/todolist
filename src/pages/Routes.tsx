@@ -1,10 +1,9 @@
-import { Route, createRoutesFromElements, createBrowserRouter } from "react-router-dom";
-import TodoListPage from "./TodoListPages/page"
-  
-  export const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route>
-        <Route path="/" element={<TodoListPage />} />
-      </Route>
-    )
-  );
+import { createBrowserRouter } from "react-router-dom";
+import TodoListPage from "../pages/TodoListPages/page";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <TodoListPage />,
+  },
+]);

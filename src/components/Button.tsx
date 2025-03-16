@@ -1,14 +1,13 @@
-import { ButtonHTMLAttributes, Children } from "react";
-
 type ButtonProps = {
+    id: string;
     child: string;
     theme :string;
-    props: ButtonHTMLAttributes<HTMLButtonElement>
+    onClick: () => void;
 }
 
-export default function Button ({child, theme, ...props}:ButtonProps) {
+export default function Button ({child, theme, onClick, ...props}:ButtonProps) {
     const className = `todos-button ${theme}`
     return (
-        <button className={className} {...props}>{child}</button>
+        <button className={className}>{child}</button>
     )
 }

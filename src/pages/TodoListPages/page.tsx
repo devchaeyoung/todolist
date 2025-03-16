@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AddTodoForm from "./components/AddTodoForm";
 import { TodoBoard, TodoItemProps  } from "./components/TodoBoard";
+import { useTheme } from '../../contexts/ThemeContext';
 
 let id = 0;
 
-export default function TodoListPage () {
-
+const TodoListPage = () => {
+  const { theme, toggleTheme } = useTheme();
   const [todos, setTodos] = useState<TodoItemProps[]>([]);
   const [inputText, setInputText] = useState("");
 
@@ -48,10 +49,22 @@ export default function TodoListPage () {
       setTodos(JSON.parse(storageData));
     }
   }, []);
-    return (
-    <main className="light">
-        <AddTodoForm text={inputText} onChange={handleChange} onClick={addTodo} onKeydown={handleKeydown} />
+
+  return (
+    <div className={`app ${theme}`}>
+      <button 
+        className="theme-toggle-button"
+        onClick={toggleTheme}
+        data-testid="theme-toggle"
+      >
+        {theme === 'light' ? '🌙' : '☀️'}
+      </button>
+      <main className={theme}>
+        <AddTodoForm text={inputText} onChange={handleChange} onClick={addTodo} onKeydown={handleKeydown} theme={theme} />
         <TodoBoard todos={todos} onClick={delTodo} />
       </main>
-    )
-}
+    </div>
+  );
+};
+
+export default TodoListPage;

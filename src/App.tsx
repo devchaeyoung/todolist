@@ -1,13 +1,13 @@
 import { RouterProvider } from "react-router-dom";
-import "./App.css";
-import { ThemeContext } from "./theme/globalStyle";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { router } from "./pages/Routes";
+import "./App.css";
 
 function App() {
   return (
-  <ThemeContext.Provider value="dark">
-    <RouterProvider router={router} />
-  </ThemeContext.Provider>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   ); 
 }
 

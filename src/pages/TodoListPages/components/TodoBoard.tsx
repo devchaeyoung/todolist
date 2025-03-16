@@ -16,7 +16,7 @@ export function TodoBoard({ todos, onClick }: TodoListProps) {
       <h2>To do list</h2>
       <ul>
         {todos.map((item: TodoItemProps) => (
-          <li key={item.id}>
+          <li key={item.id} data-testid={item.todo}>
             {item.todo}
             <button onClick={() => onClick(item.id)}>delete</button>
           </li>
