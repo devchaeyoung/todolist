@@ -3,8 +3,11 @@ import AddTodoForm from "./mains/AddTodoForm";
 import TodoBoard from "./mains/TodoBoard";
 import { TodoItemProps } from "./mains/TodoBoard";
 
+
 let id = 0;
+
 export default function Main() {
+
   const [todos, setTodos] = useState<TodoItemProps[]>([]);
   const [inputText, setInputText] = useState("");
 
@@ -26,7 +29,8 @@ export default function Main() {
   };
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (inputText.trim() === "") return;
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       addTodo();
     }
   };
@@ -48,7 +52,7 @@ export default function Main() {
   }, []);
 
   return (
-    <main>
+    <main className="light">
       <AddTodoForm text={inputText} onChange={handleChange} onClick={addTodo} onKeydown={handleKeydown} />
       <TodoBoard todos={todos} onClick={delTodo} />
     </main>
